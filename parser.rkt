@@ -81,7 +81,7 @@
 (if (or (not (file-exists? menu-file))
         is-menu-out-of-date?)
     (if (system* download-script (rel-dir ""))
-        (run-check (pdf-page (open-pdf (rel-dir "ex_menus/menu3.pdf")) 0))
+        (run-check (pdf-page (open-pdf (rel-dir "ex_menus/menu1.pdf")) 0))
         "download.sh completed with errors")
     today)
 
@@ -91,14 +91,6 @@
   (drop 
    (read-lines menu-file)
    2))
-
-; menu-date: String
-; "Settimana dal dd.mm.yyyy al dd.mm.yyyy" is parsed which then becomes "dd.mm.yyyy - dd.mm.yyyy".
-(define MENU-DATE (string-replace
-                   (string-join
-                    (drop (regexp-split #rx" " (first RAW-MENU-LINES)) 3)
-                    " ")
-                   "al" "-"))
 
 ; menu: List<List<String>>
 ; Like raw-menu-lines but without date and trailing lines (edit notice and eof char) 
@@ -390,6 +382,15 @@
 ; =============================
 ; = PARSING RESULTS (at last) = 
 ; List<DayMenu>
+
+; menu-date: String
+; "Settimana dal dd.mm.yyyy al dd.mm.yyyy" is parsed which then becomes "dd.mm.yyyy - dd.mm.yyyy".
+(define MENU-DATE (string-replace
+                   (string-join
+                    (drop (remove-empty-strings (regexp-split #rx" " (first RAW-MENU-LINES))) 2)
+                    " ")
+                   "al" "-"))
+
 (define menu-ready
   (split-into-days (list (day-menu '() '() '())
                          (day-menu '() '() '())

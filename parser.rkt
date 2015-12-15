@@ -81,7 +81,7 @@
 (if (or (not (file-exists? menu-file))
         is-menu-out-of-date?)
     (if (system* download-script (rel-dir ""))
-        (run-check (pdf-page (open-pdf (rel-dir "ex_menus/menu1.pdf")) 0))
+        (run-check (pdf-page (open-pdf (rel-dir "output/menu.pdf")) 0))
         "download.sh completed with errors")
     today)
 

@@ -46,7 +46,7 @@ $(mkdir $menus)
   wait $!
 
   # Start the pdf parsing with the pdfgrep tool and create a txt file
-  if $("$SYS_PATH"pdftotext -layout $ex_menu3 $menuTXT);
+  if $("$SYS_PATH"pdftotext -layout $menuPDF $menuTXT);
     then
       echo "Menu text extracted successfully."
     else

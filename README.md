@@ -2,10 +2,10 @@
 
 Browse the [USI](http://www.inf.usi.ch)'s canteen menu with a single app and manage your preferences.
 
-![](images/screenshot1.png)
+![](images/screenshot1.jpg)
 Get notified about the daily menu.
 
-![](images/screenshot2.png)
+![](images/screenshot2.jpg)
 ## Installation
 To run the project, a few dependencies are required:
 

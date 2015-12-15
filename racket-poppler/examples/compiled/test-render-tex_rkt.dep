@@ -1,0 +1,1 @@
+("6.3" ("2db203ac1d67841fbcfd5018098750d9f767e584" . "6b987daf69631979f59651a1a19b08f18fc11ae1") (collects #"pict" #"main.rkt") (collects #"racket" #"main.rkt") (collects #"racket" #"runtime-config.rkt") (collects #"racket-poppler" #"render-tex.rkt"))

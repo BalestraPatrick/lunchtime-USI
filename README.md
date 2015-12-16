@@ -7,12 +7,12 @@ Get notified about the daily menu.
 
 ![](images/screenshot2.jpg)
 ## Installation
-To run the project, a few dependencies are required:
+You have to install a few dependencies in order to build the project successfully. To run the project, open the `λunchtime.rkt` file and run it.
 
 * Make sure you have [DrRacket 6.3](http://racket-lang.org) installed on your machine.
 * Install [poppler](http://poppler.freedesktop.org) library which is used to do a basic parsing of a PDF by doing `brew install poppler`
 * Install [terminal-notifier](https://github.com/julienXX/terminal-notifier) to display notifications on your Mac by doing `brew install terminal-notifier`
-* If the [racket-poppler](https://github.com/soegaard/racket-poppler) library is not recognized by DrRacket, install it through the package manager.
+* Install the [racket-poppler](https://github.com/soegaard/racket-poppler) library through the package manager. Go to `File > Install Package`. Press Browse and then the Directory button. Select the `racket-poppler` folder in the project directory and press Update. 
 
 ## Implementation Details
 * **λunchtime.rkt** Program launcher.* **ui.rkt** GUI definition.* preferences.rkt Manages notifications (through a .plist file) and stores preferences set with the GUI.* **parser.rkt** Core module, runs the bash scripts to convert the menu PDF into TXT and then parses it, extracting the different days’ menus and courses. 

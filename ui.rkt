@@ -297,5 +297,5 @@
      [label "Github"]
      [parent github]
      [callback (λ (b e)
-                 (send-url "http://www.github.com"))])
+                 (send-url "https://github.com/BalestraPatrick/lunchtime-USI"))])
 

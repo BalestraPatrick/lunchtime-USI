@@ -67,7 +67,9 @@
         (list 'assoc-pair "Label" "ch.usi.λunchtime.notify")
         (list 'assoc-pair
               "ProgramArguments"
-              (list 'array (path->string (build-path PATH-TO-HERE "scripts/notify.sh"))))
+              (list 'array (if RELEASE-BUILD
+                               (path->string (build-path (find-system-path 'home-dir) (string->path (rel-dir "scripts/notify.sh"))))
+                               (path->string (build-path PATH-TO-HERE "scripts/notify.sh")))))
         (list 'assoc-pair
               "StartCalendarInterval"
               (list 'dict (list 'assoc-pair "Hour"

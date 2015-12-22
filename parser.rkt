@@ -19,13 +19,13 @@
 ; = PARTIAL MENU PARSING =
 
 ; Name of the txt file containing the text of the menu
-(define menu-file (string-append (rel-dir "output/menu.txt")))
+(define menu-file (rel-dir "output/menu.txt"))
 
 ; Path of the download script to be bundled inside the release.
-(define-runtime-path download-script "scripts/download.sh")
+(define download-script (rel-dir "scripts/download.sh"))
 
 ; Path of the check script to be bundled inside the release.
-(define-runtime-path check-script "scripts/check.sh")
+(define check-script (rel-dir "scripts/check.sh"))
 
 ; x: List<Number> -> String
 ; Given '(x1 y1 x2 y2) returns the string of the rounded x1 value (to be given as bash script argument)

@@ -446,36 +446,45 @@
 ; Returns the full menu for the given day if already cached. If not,
 ; it is parsed and created and then returned.
 (define (menu-for-day day)
-  (cond [(file-exists? (rel-dir "menus/mon-full.txt"))
-         ; Menu is cached so let's return the one for the given day.
-         (cond [(equal? day 1) (day-menu 
-                                      (read-lines (rel-dir "menus/mon-full.txt"))
-                                      (read-lines (rel-dir "menus/mon-single.txt"))
-                                      (read-lines (rel-dir "menus/mon-veggie.txt")))]
-               [(equal? day 2) (day-menu
-                                       (read-lines (rel-dir "menus/tue-full.txt"))
-                                       (read-lines (rel-dir "menus/tue-single.txt"))
-                                       (read-lines (rel-dir "menus/tue-veggie.txt")))]
-               [(equal? day 3) (day-menu
-                                         (read-lines (rel-dir "menus/wed-full.txt"))
-                                         (read-lines (rel-dir "menus/wed-single.txt"))
-                                         (read-lines (rel-dir "menus/wed-veggie.txt")))]
-               [(equal? day 4) (day-menu
-                                        (read-lines (rel-dir "menus/thu-full.txt"))
-                                        (read-lines (rel-dir "menus/thu-single.txt"))
-                                        (read-lines (rel-dir "menus/thu-veggie.txt")))]
-               [(equal? day 5) (day-menu
-                                      (read-lines (rel-dir "menus/fri-full.txt"))
-                                      (read-lines (rel-dir "menus/fri-single.txt"))
-                                      (read-lines (rel-dir "menus/fri-veggie.txt")))]
-               [else (day-menu '("Menu not available today. 😭")
-                               '("Menu not available today. 😭")
-                               '("Menu not available today. 😭"))])]
-        ; If there is no cached menu, generate and return it.
-        [else (write-files full-courses "full")
-              (write-files single-courses "single")
-              (write-files veggie-courses "veggie")
-              (menu-for-day day)]))
+  (if (file-exists? (rel-dir "menus/mon-full.txt"))
+      (cond [(and (file-exists? (rel-dir "menus/mon-full.txt"))
+                  (equal? day 1))
+             (day-menu 
+              (read-lines (rel-dir "menus/mon-full.txt"))
+              (read-lines (rel-dir "menus/mon-single.txt"))
+              (read-lines (rel-dir "menus/mon-veggie.txt")))]
+            [(and (file-exists? (rel-dir "menus/tue-full.txt"))
+                  (equal? day 2))
+             (day-menu
+              (read-lines (rel-dir "menus/tue-full.txt"))
+              (read-lines (rel-dir "menus/tue-single.txt"))
+              (read-lines (rel-dir "menus/tue-veggie.txt")))]
+            [(and (file-exists? (rel-dir "menus/wed-full.txt"))
+                  (equal? day 3))
+             (day-menu
+              (read-lines (rel-dir "menus/wed-full.txt"))
+              (read-lines (rel-dir "menus/wed-single.txt"))
+              (read-lines (rel-dir "menus/wed-veggie.txt")))]
+            [(and (file-exists? (rel-dir "menus/thu-full.txt"))
+                  (equal? day 4))
+             (day-menu
+              (read-lines (rel-dir "menus/thu-full.txt"))
+              (read-lines (rel-dir "menus/thu-single.txt"))
+              (read-lines (rel-dir "menus/thu-veggie.txt")))]
+            [(and (file-exists? (rel-dir "menus/fri-full.txt"))
+                  (equal? day 5))
+             (day-menu
+              (read-lines (rel-dir "menus/fri-full.txt"))
+              (read-lines (rel-dir "menus/fri-single.txt"))
+              (read-lines (rel-dir "menus/fri-veggie.txt")))]
+            [else (day-menu '("Menu not available today. 😭")
+                            '("Menu not available today. 😭")
+                            '("Menu not available today. 😭"))])
+      ; If there is no cached menu, generate and return it.
+      (begin (write-files full-courses "full")
+             (write-files single-courses "single")
+             (write-files veggie-courses "veggie")
+             (menu-for-day day))))
 ; Tests
 (check-satisfied (menu-for-day 1) day-menu?)
 (check-satisfied (menu-for-day 2) day-menu?)
